@@ -1,0 +1,6 @@
+D:\Random\LCC\CS260\Lab7\HeapSortProject\HeapSortProject\bin\Debug\HeapSortProject.dll
+D:\Random\LCC\CS260\Lab7\HeapSortProject\HeapSortProject\bin\Debug\HeapSortProject.pdb
+D:\Random\LCC\CS260\Lab7\HeapSortProject\HeapSortProject\obj\Debug\HeapSortProject.csprojAssemblyReference.cache
+D:\Random\LCC\CS260\Lab7\HeapSortProject\HeapSortProject\obj\Debug\HeapSortProject.csproj.CoreCompileInputs.cache
+D:\Random\LCC\CS260\Lab7\HeapSortProject\HeapSortProject\obj\Debug\HeapSortProject.dll
+D:\Random\LCC\CS260\Lab7\HeapSortProject\HeapSortProject\obj\Debug\HeapSortProject.pdb
