@@ -6,10 +6,11 @@ using System.Threading.Tasks;
 
 namespace HeapSortProject
 {
-    public static class Heap
+    public static class HeapifySort
     {
        
         //Public Class Methods
+        /*
         public int Remove(ref int[] heapArray)
         {
             //take the top value on the array, and store in temp
@@ -22,7 +23,7 @@ namespace HeapSortProject
             currentIndex--;
             return temp;
         }
-        
+        */
         //this will compare the root to its children
         public static void TrickleDown(ref int[] heapArray)
         {
@@ -30,42 +31,67 @@ namespace HeapSortProject
             //compare the parent to its left and right child
             //switch the parent with the largest of the children
             //set the current index to the selected child
-            bool noLongerTrue = true;
-            for (int i = 0; i < heapArray.Length; i++)
+            bool noLongerTrue = false;
+            bool outOfArray = false;
+            for (int i = (heapArray.Length-1); i >= 0; i--)
             {
+                noLongerTrue = false;
+                outOfArray = false;
                 int index = i; //sets index to be used
-                while (noLongerTrue)
+                while (noLongerTrue == false && outOfArray == false) //terminates when the trickle down is complete
                 {
-                    int temp;
+                    int subIndex = index;
                     int parent;
                     int leftChild;
                     int rightChild;
-                    if(!(Right(index) >= heapArray.Length && Left(index) >= heapArray.Length)) //checks to see if current element is leaf
+                    //check to see if both children are out of bounds
+                    //then check if left is in bounds and right is out
+                    //otherwise the rules are normal
+                    if (!(Right(subIndex) >= heapArray.Length && Left(subIndex) >= heapArray.Length)) //checks to see if current element is leaf
                     {
-                        parent = heapArray[index];
-                        leftChild = heapArray[Left(index)];
-                        rightChild = heapArray[Right(index)];
-                        if (rightChild > parent && leftChild < rightChild)
+                        if(!(Left(subIndex) >= heapArray.Length) && (Right(subIndex) >= heapArray.Length))
                         {
-                            temp = parent;
-                            parent = rightChild;
-                            rightChild = temp;
-                            index = Right(index);
+                            parent = heapArray[subIndex];
+                            leftChild = heapArray[Left(subIndex)];
+                            if (leftChild > parent)
+                            {
+                                heapArray[subIndex] = leftChild;
+                                heapArray[Left(subIndex)] = parent;
+                                subIndex = Left(subIndex);
+                            }
+                            else
+                            {
+                                noLongerTrue = true;
+                            }
                         }
-                        else if (leftChild > parent && leftChild > rightChild)
+                        else
                         {
-                            temp = parent;
-                            parent = leftChild;
-                            leftChild = temp;
-                            index = Left(index);
+                            parent = heapArray[subIndex];
+                            leftChild = heapArray[Left(subIndex)];
+                            rightChild = heapArray[Right(subIndex)];
+                            if (rightChild > parent && leftChild < rightChild)
+                            {
+                                heapArray[subIndex] = rightChild;
+                                heapArray[Right(subIndex)] = parent;
+                                subIndex = Right(subIndex);
+                            }
+                            else if (leftChild > parent && leftChild > rightChild)
+                            {
+                                heapArray[subIndex] = leftChild;
+                                heapArray[Left(subIndex)] = parent;
+                                subIndex = Left(subIndex);
+                            }
+                            else
+                            {
+                                noLongerTrue = true;
+                            }
                         }
                     }
                     else
                     {
-                        noLongerTrue = false;
+                        outOfArray = true;
                     }
                 }
-                //noLongerTrue = true; //resets the counter for while loop
             }
         }
 
